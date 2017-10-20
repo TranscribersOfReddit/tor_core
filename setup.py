@@ -39,12 +39,21 @@ def long_description():
         return f.read()
 
 
+test_deps = [
+    'pytest',
+    'pytest-cov',
+]
+dev_helper_deps = [
+    'better-exceptions',
+]
+
+
 setup(
     name='tor_core',
     version=__version__,
     description='Core functionality used across /r/TranscribersOfReddit bots',
     long_description=long_description(),
-    url='https://github.com/transcribersofreddit/tor_core',
+    url='https://github.com/TranscribersOfReddit/tor_core',
     author='Joe Kaufeld',
     author_email='joe.kaufeld@gmail.com',
     license='MIT',
@@ -61,16 +70,19 @@ setup(
     ],
     keywords='',
     packages=find_packages(exclude=['test*', 'bin/*']),
+    cmdclass={'test': PyTest},
     test_suite='test',
+    tests_require=test_deps,
+    extras_require={
+        'dev': test_deps + dev_helper_deps,
+    },
     install_requires=[
         'praw==5.0.1',
         'redis<3.0.0',
         'sh',
         'bugsnag',
-        'pytest',
         'cherrypy',
         'addict',
         'raven',  # Sentry client
     ],
-    cmdclass={'test': PyTest}
 )

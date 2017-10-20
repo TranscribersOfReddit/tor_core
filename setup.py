@@ -42,6 +42,7 @@ def long_description():
 test_deps = [
     'pytest',
     'pytest-cov',
+    'addict',
 ]
 dev_helper_deps = [
     'better-exceptions',
@@ -70,19 +71,19 @@ setup(
     ],
     keywords='',
     packages=find_packages(exclude=['test*', 'bin/*']),
+    zip_safe=True,
     cmdclass={'test': PyTest},
     test_suite='test',
-    tests_require=test_deps,
     extras_require={
         'dev': test_deps + dev_helper_deps,
     },
+    tests_require=test_deps,
     install_requires=[
         'praw==5.0.1',
         'redis<3.0.0',
         'sh',
-        'bugsnag',
         'cherrypy',
-        'addict',
+        'bugsnag',
         'raven',  # Sentry client
     ],
 )

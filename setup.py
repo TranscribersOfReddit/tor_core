@@ -70,7 +70,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     keywords='',
-    packages=find_packages(exclude=['test*', 'bin/*']),
+    packages=find_packages(exclude=['test.*', '*.test.*', '*.test', 'test']),
     zip_safe=True,
     cmdclass={'test': PyTest},
     test_suite='test',

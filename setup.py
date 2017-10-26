@@ -1,5 +1,6 @@
 import codecs
 import os
+import shlex
 import sys
 
 from setuptools import (
@@ -17,7 +18,7 @@ class PyTest(TestCommand):
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
-        self.pytest_args = []
+        self.pytest_args = '--cov=tor_core'
 
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -27,7 +28,7 @@ class PyTest(TestCommand):
     def run_tests(self):
         import pytest
 
-        errno = pytest.main(self.pytest_args)
+        errno = pytest.main(shlex.split(self.pytest_args))
         sys.exit(errno)
 
 

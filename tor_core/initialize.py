@@ -5,10 +5,10 @@ import sys
 
 import redis
 from bugsnag.handlers import BugsnagHandler
-from raven.handlers.logging import SentryHandler
-from raven.conf import setup_logging
 from praw import Reddit
 from raven import Client
+from raven.conf import setup_logging
+from raven.handlers.logging import SentryHandler
 from slackclient import SlackClient
 
 from tor_core import __HEARTBEAT_FILE__

@@ -94,13 +94,16 @@ def send_to_modchat(message, config, channel='general'):
     :return: None.
     """
     if config.modchat:
-        config.modchat.api_call(
-            'chat.postMessage',
-            channel=channel,
-            text=message
-        )
-
-    return
+        try:
+            config.modchat.api_call(
+                'chat.postMessage',
+                channel=channel,
+                text=message
+            )
+        except Exception as e:
+            logging.error(f'Failed to send message to modchat #{channel}: '
+                          f'\'{message}\'')
+            logging.error(e)
 
 
 def explode_gracefully(error, config):
